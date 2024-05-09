@@ -11,7 +11,6 @@
     <a href="/logout" class="button">LOGOUT</a>
 </div>
 
-<!-- Search Form -->
 <form th:action="@{/search}" method="get">
     <input type="text" name="address" placeholder="Address">
     <input type="text" name="description" placeholder="Description">
@@ -38,21 +37,47 @@
     <button type="submit" class="button">Search</button>
 </form>
 
-<!-- Display Real Estate Listings -->
-<div th:if="${realEstateObjects.isEmpty()}">
+<div th:if="${objects.isEmpty()}">
     <p>No real estate listings available.</p>
 </div>
-<div th:unless="${realEstateObjects.isEmpty()}">
-    <div th:each="realEstateObject : ${realEstateObjects}">
-        <h2 th:text="${realEstateObject.address}">Address</h2>
-        <img th:src="@{${realEstateObject.photoURL}}" alt="Real Estate Image" style="width:200px;height:200px;">
-        <p th:text="'Area: ' + ${realEstateObject.area} + ' sq meters'">Area</p>
-        <p th:text="'Price: $' + ${realEstateObject.price}">Price</p>
-        <p th:text="'Description: ' + ${realEstateObject.description}">Description</p>
-        <p th:text="'Build Year: ' + ${realEstateObject.buildYear}">Build Year</p>
-        <p th:text="'Number of Living Rooms: ' + ${realEstateObject.numberOfLivingRooms}">Number of Living Rooms</p>
-        <p th:text="'Number of Bathrooms: ' + ${realEstateObject.numberOfBathRooms}">Number of Bathrooms</p>
+<div th:unless="${objects.isEmpty()}">
+    <div th:each="object : ${objects}">
+        <h2 th:text="${object.address}">Address</h2>
+        <img th:src="@{${object.photoURL}}" alt="Real Estate Image" style="width:200px;height:200px;">
+        <p th:text="'Area: ' + ${object.area} + ' sq meters'">Area</p>
+        <p th:text="'Price: $' + ${object.price}">Price</p>
+        <p th:text="'Description: ' + ${object.description}">Description</p>
+        <p th:text="'Build Year: ' + ${object.buildYear}">Build Year</p>
+        <p th:text="'Number of Living Rooms: ' + ${object.numberOfLivingRooms}">Number of Living Rooms</p>
+        <p th:text="'Number of Bathrooms: ' + ${object.numberOfBathRooms}">Number of Bathrooms</p>
+        <button th:onclick="'addRequest(' + ${object.id} + ', ' + ${userId} + ')'" class="button">Make Request</button>
     </div>
 </div>
+<script>
+    function addRequest(objectId, userId) {
+        var requestData = {
+            userId: userId,
+            objectId: objectId
+        };
+
+        fetch('/api/requests', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Request added successfully');
+            } else {
+                console.error('Failed to add request');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
 </body>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Real Estate Listings</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Real Estate Listings</h1>
+<div class="login-button">
+    <a href="/logout" class="button">LOGOUT</a>
+</div>
+
+<div th:if="${objects.isEmpty()}">
+    <p>No real estate listings available.</p>
+</div>
+<div th:unless="${objects.isEmpty()}">
+    <div th:each="object : ${objects}">
+        <h2 th:text="${object.address}">Address</h2>
+        <img th:src="@{${object.photoURL}}" alt="Real Estate Image" style="width:200px;height:200px;">
+        <p th:text="'Area: ' + ${object.area} + ' sq meters'">Area</p>
+        <p th:text="'Price: $' + ${object.price}">Price</p>
+        <p th:text="'Description: ' + ${object.description}">Description</p>
+        <p th:text="'Build Year: ' + ${object.buildYear}">Build Year</p>
+        <p th:text="'Number of Living Rooms: ' + ${object.numberOfLivingRooms}">Number of Living Rooms</p>
+        <p th:text="'Number of Bathrooms: ' + ${object.numberOfBathRooms}">Number of Bathrooms</p>
+        <div th:unless="${object.requestUsers.isEmpty()}">
+            <p>Interested Users:</p>
+            <ul th:each="user : ${object.requestUsers}">
+                <li>
+                    <p th:text="'ID: ' + ${user.id} + ' Name: ' + ${user.name">User</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
