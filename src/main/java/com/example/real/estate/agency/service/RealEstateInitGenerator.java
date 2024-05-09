@@ -87,7 +87,7 @@ public class RealEstateInitGenerator {
         return 1 + random.nextInt(5);
     }
 
-    private String getRandomPhotoURL() {return "/" + random.nextInt(20) + ".jpeg";}
+    private String getRandomPhotoURL() {return "/" + random.nextInt(1, 21) + ".jpeg";}
 
     public List<RealEstateObject> generateRealEstateObjects(int count) {
         return IntStream.range(0, count).mapToObj(
