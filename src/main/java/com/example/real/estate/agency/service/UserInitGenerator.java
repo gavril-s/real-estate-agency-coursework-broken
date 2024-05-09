@@ -22,12 +22,14 @@ public class UserInitGenerator {
             new User(
                 null,
                 "admin",
-                passwordEncoder.encode("admin")
+                passwordEncoder.encode("admin"),
+                "admin@example.org"
             ),
             new User(
                 null,
                 "user",
-                passwordEncoder.encode("user")
+                passwordEncoder.encode("user"),
+                "user@example.org"
             )
         );
         userRepository.saveAll(users);

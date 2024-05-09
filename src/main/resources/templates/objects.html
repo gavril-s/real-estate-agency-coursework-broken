@@ -92,51 +92,51 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center">Real Estate Listings</h1>
+    <h1 class="text-center">Квартиры</h1>
     <div class="login-button">
-        <a href="/logout" class="button">LOGOUT</a>
+        <a href="/logout" class="button">Выйти из аккаунта</a>
     </div>
 
     <form th:action="@{/search}" method="get">
-        <input type="text" name="address" placeholder="Address" th:value="${param.address}">
-        <input type="text" name="description" placeholder="Description" th:value="${param.description}">
-        <input type="number" name="areaMin" placeholder="Min Area (sq meters)" th:value="${param.areaMin}">
-        <input type="number" name="areaMax" placeholder="Max Area (sq meters)" th:value="${param.areaMax}">
-        <input type="number" name="priceMin" placeholder="Min Price ($)" th:value="${param.priceMin}">
-        <input type="number" name="priceMax" placeholder="Max Price ($)" th:value="${param.priceMax}">
-        <input type="number" name="buildYearMin" placeholder="Min Build Year" th:value="${param.buildYearMin}">
-        <input type="number" name="buildYearMax" placeholder="Max Build Year" th:value="${param.buildYearMax}">
-        <input type="number" name="minLivingRooms" placeholder="Min Living Rooms" th:value="${param.minLivingRooms}">
-        <input type="number" name="minBathRooms" placeholder="Min Bathrooms" th:value="${param.minBathRooms}">
+        <input type="text" name="address" placeholder="Адрес" th:value="${param.address}">
+        <input type="text" name="description" placeholder="Описание" th:value="${param.description}">
+        <input type="number" name="areaMin" placeholder="Минимальная площадь" th:value="${param.areaMin}">
+        <input type="number" name="areaMax" placeholder="Максимальная площадь" th:value="${param.areaMax}">
+        <input type="number" name="priceMin" placeholder="Минимальная цена (₽)" th:value="${param.priceMin}">
+        <input type="number" name="priceMax" placeholder="Максимальная цена (₽)" th:value="${param.priceMax}">
+        <input type="number" name="buildYearMin" placeholder="Минимальный год постройки" th:value="${param.buildYearMin}">
+        <input type="number" name="buildYearMax" placeholder="Максимальный год постройки" th:value="${param.buildYearMax}">
+        <input type="number" name="minLivingRooms" placeholder="Минимальное кол-во спален" th:value="${param.minLivingRooms}">
+        <input type="number" name="minBathRooms" placeholder="Минимальное кол-во санузлов" th:value="${param.minBathRooms}">
         <select name="sortBy">
-            <option value="address">Sort by Address</option>
-            <option value="area">Sort by Area</option>
-            <option value="price">Sort by Price</option>
-            <option value="buildYear">Sort by Build Year</option>
-            <option value="numberOfLivingRooms">Sort by Living Rooms</option>
-            <option value="numberOfBathRooms">Sort by Bathrooms</option>
+            <option value="address">Сортировать по адресу</option>
+            <option value="area">Сортировать по площади</option>
+            <option value="price">Сортировать по цене</option>
+            <option value="buildYear">Сортировать по году постройки</option>
+            <option value="numberOfLivingRooms">Сортировать по кол-ву спален</option>
+            <option value="numberOfBathRooms">Сортировать по кол-ву санузлов</option>
         </select>
         <select name="sortDirection">
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
+            <option value="asc">Возрастающий</option>
+            <option value="desc">Убывающий</option>
         </select>
-        <button type="submit" class="button">Search</button>
+        <button type="submit" class="button">Поиск</button>
     </form>
 
     <div th:if="${objects.isEmpty()}">
-        <p>No real estate listings available.</p>
+        <p>Нет подходящих квартир.</p>
     </div>
     <div th:unless="${objects.isEmpty()}" class="objects">
         <div th:each="object : ${objects}" class="object">
-            <h2 th:text="${object.address}">Address</h2>
+            <h2 th:text="${object.address}">Адрес</h2>
             <img th:src="@{${object.photoURL}}" alt="Real Estate Image">
-            <p th:text="'Area: ' + ${object.area} + ' sq meters'">Area</p>
-            <p th:text="'Price: $' + ${object.price}">Price</p>
-            <p th:text="'Description: ' + ${object.description}">Description</p>
-            <p th:text="'Build Year: ' + ${object.buildYear}">Build Year</p>
-            <p th:text="'Number of Living Rooms: ' + ${object.numberOfLivingRooms}">Number of Living Rooms</p>
-            <p th:text="'Number of Bathrooms: ' + ${object.numberOfBathRooms}">Number of Bathrooms</p>
-            <button th:onclick="'addRequest(' + ${object.id} + ', ' + ${userId} + ')'" class="button">Make Request</button>
+            <p th:text="'Площадь: ' + ${object.area} + ' кв. м'">Площадь</p>
+            <p th:text="'Цена: ' + ${object.price} + ' ₽'">Цена</p>
+            <p th:text="'Описание: ' + ${object.description}">Описание</p>
+            <p th:text="'Год постройки: ' + ${object.buildYear}">Год постройки</p>
+            <p th:text="'Кол-во спален: ' + ${object.numberOfLivingRooms}">Кол-во спален</p>
+            <p th:text="'Кол-во санузлов: ' + ${object.numberOfBathRooms}">Кол-во санузлов</p>
+            <button th:onclick="'addRequest(' + ${object.id} + ', ' + ${userId} + ')'" class="button">Заинтересован</button>
         </div>
     </div>
 </div>
