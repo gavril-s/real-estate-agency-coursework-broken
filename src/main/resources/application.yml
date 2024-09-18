@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-couj95n79t8c739il58g-a.frankfurt-postgres.render.com/real_estate_db_pea7
+    url: jdbc:postgresql://localhost:5432/real_estate_db
     username: admin
-    password: kq70uP6WAyHA3tVUaoUMd811Fj0gbkvp
+    password: admin
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
