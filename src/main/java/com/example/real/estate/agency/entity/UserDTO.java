@@ -17,6 +17,6 @@ public class UserDTO {
     private String confirmPassword;
 
     public boolean validPasswords() {
-        return password.equals(confirmPassword);
+        return !password.equals(confirmPassword);
     }
 }

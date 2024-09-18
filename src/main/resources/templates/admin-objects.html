@@ -64,7 +64,7 @@
                             <p>Заинтересованные клиенты:</p>
                             <ul th:each="user : ${object.requestUsers}">
                                 <li>
-                                    <p th:text="'ID: ' + ${user.id} + ', Имя: ' + ${user.name} + ', Email: ' + ${user.email}">User</p>
+                                    <p th:text="'ID: ' + ${user.id} + ', Имя: ' + ${user.id} + ', Email: ' + ${user.id}">User</p>
                                 </li>
                             </ul>
                         </div>

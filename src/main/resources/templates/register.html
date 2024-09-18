@@ -52,7 +52,7 @@
 </head>
 <body>
 <div class="container">
-    <form method="POST" th:action="@{/register}" th:object="${user}">
+    <form method="POST" th:action="@{/login}" th:object="${user}">
         <div th:if="${param.exists}" class="alert alert-danger">
             Пользователь с таким именем существует
         </div>
